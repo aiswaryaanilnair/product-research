@@ -1,0 +1,5 @@
+langchain
+python-dotenv
+gpt_researcher==0.11.1
+streamlit
+prettytable
