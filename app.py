@@ -33,33 +33,44 @@ def main():
 ## Sentiment Analysis and Market Insights Report for {user_query}
 
 Conduct a structured sentiment analysis and market insights report for {user_query}:
+
+### Overview:
+Summarize the product's key features, specifications, and qualities in a professional and concise manner.
+
+### 1. Key Features & Specifications
+Provide key features and the specifications for {user_query} with a small description for each, as bullets points.
     
-### 1. Key Pain Points & Issues (Negative Sentiment)
+### 2. Key Pain Points & Issues (Negative Sentiment)
        A. 
        B. 
        C. 
     
-### 2. Positive Feedback & Strengths (Positive Sentiment)
+### 3. Positive Feedback & Strengths (Positive Sentiment)
        A. 
        B. 
        C. 
     
-### 3. Feature Requests & User Expectations
+### 4. Feature Requests & User Expectations
     
-### 4. Market Trends & Regional Performance
+### 5. Market Trends & Regional Performance
        Format the output as a table with the following columns:
        Region | Sales Performance | Key Strengths | Challenges
     
-### 5. Actionable Recommendations (For Brand Strategy & Optimization)
+### 6. Actionable Recommendations (For Brand Strategy & Optimization)
        A. 
        B. 
        C. 
     
-### 6. Key Insights for Brand Analysis
+### 7. Key Insights for Brand Analysis
        - Product Strengths to Leverage
        - Pain Points to Address
        - Market-Specific Strategy
-    
+       
+### 8. Comparison Table Across E-Commerce Platforms:
+Create a table comparing the product across different websites. Only include websites that have information about the product. The table should include the following columns:
+| Website | Product Name | Price | Discount | User Rating | Number of Reviews | Shipping Options | Stock Availability | Return Policy | Seller Name/Verified | Additional Perks |
+Websites to consider: Amazon India, Flipkart, Myntra, Snapdeal, Tata CLiQ, AJIO, Paytm Mall, JioMart, Meesho, and IndiaMART.
+
     Provide a final takeaway with the most critical strategic direction.
     
     Overall Sentiment Summary: 
@@ -67,7 +78,7 @@ Conduct a structured sentiment analysis and market insights report for {user_que
     Columns:   Positive | Negative | Neutral
     Rows:   Design & Build Quality | Display & Camera | Battery Performance | Software & Performance | Pricing & Value | Availability & Supply
 
-    ## Comprehensive Feedback and Expectations Analysis for {user_query}
+## Comprehensive Feedback and Expectations Analysis for {user_query}
  
 Instructions for GPT Researcher:  
 1. Collect feedback from at least **5 different sources**, maily from **Reddit**, **Quora**, **Stack Overflow**, and other relevant public forums or online communities. Ensure you cover both positive and negative aspects of user feedback.  
