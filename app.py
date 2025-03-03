@@ -36,7 +36,7 @@ Conduct a structured sentiment analysis and market insights report for {user_que
 Consider additional websites like Amazon India, Flipkart, Myntra, Snapdeal, etc as well while generating market insights.
 
 ### Overview:
-Summarize the product's key features, specifications, and qualities in a professional and concise manner. Include atleast 3 key features in the overview and make sure to mark the key features and specifications in bold.
+Summarize the product's key features, specifications, and qualities in a professional and concise manner. Include atleast 3 key features in the overview within the summary and make sure to mark the key features and specifications in bold.
 
 ### 1. Key Features & Specifications
 Provide key features and the specifications for {user_query} as bullet points,it should be precise and to the point.
