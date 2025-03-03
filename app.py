@@ -42,13 +42,13 @@ Summarize the product's key features, specifications, and qualities in a profess
 Provide key features and the specifications for {user_query} as bullet points,it should be precise and to the point.
 
 ### 2. Key Pain Points & Issues (Negative Sentiment)
-Provide a list of top 3 key pain points and issues with a small description for each, as A, B, C list format. Include a **direct link with SOURCE NAME** to the relevant discussion post so users can access it for further details.
+Provide a list of top 3 key pain points and issues with a small description for each, as A, B, C list format. Include a **direct link** to the relevant discussion post so users can access it for further details.
        A. 
        B. 
        C. 
     
 ### 3. Positive Feedback & Strengths (Positive Sentiment)
-Provide a list of top 3 positive feedback and strengths with a small description for each, as A, B, C list format. Include a **direct link with SOURCE NAME** to the relevant discussion post so users can access it for further details.
+Provide a list of top 3 positive feedback and strengths with a small description for each, as A, B, C list format. Include a **direct link** to the relevant discussion post so users can access it for further details.
        A. 
        B. 
        C. 
