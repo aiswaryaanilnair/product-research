@@ -122,7 +122,8 @@ Output Format:
 End this report with and go to next report:    
 - Actionable recommendations for improving user experience or emphasizing positive feedback in marketing strategies.
 
-At the end of the report, provide a section with **all i
+At the end of the report, provide a section with **all individual sources** compiled in a list of clickable links for user reference. Make sure the refrences from both the reports are included.  
+"""
                 report_type = "research_report"
                 report, context, sources = asyncio.run(get_report(query, report_type))
  
