@@ -33,19 +33,23 @@ def main():
 ## Sentiment Analysis and Market Insights Report for {user_query}
 
 Conduct a structured sentiment analysis and market insights report for {user_query}:
+For points 2 and 3, include a **direct link with SOURCE NAME** to the relevant discussion post so users can access it for further details.
+Consider additional websites like Amazon India, Flipkart, Myntra, Snapdeal, etc as well while generating market insights.
 
 ### Overview:
-Summarize the product's key features, specifications, and qualities in a professional and concise manner.
+Summarize the product's key features, specifications, and qualities in a professional and concise manner. Include atleast 3 key features in the overview and make sure to mark the key features and specifications in bold.
 
 ### 1. Key Features & Specifications
-Provide key features and the specifications for {user_query} with a small description for each, as bullets points.
-    
+Provide key features and the specifications for {user_query} as bullet points,it should be precise and to the point.
+
 ### 2. Key Pain Points & Issues (Negative Sentiment)
+Provide a list of top 3 key pain points and issues with a small description for each, as A, B, C list format.
        A. 
        B. 
        C. 
     
 ### 3. Positive Feedback & Strengths (Positive Sentiment)
+Provide a list of top 3 positive feedback and strengths with a small description for each, as A, B, C list format.
        A. 
        B. 
        C. 
@@ -57,6 +61,7 @@ Provide key features and the specifications for {user_query} with a small descri
        Region | Sales Performance | Key Strengths | Challenges
     
 ### 6. Actionable Recommendations (For Brand Strategy & Optimization)
+
        A. 
        B. 
        C. 
@@ -71,13 +76,15 @@ Create a table comparing the product across different websites. Only include web
 | Website | Product Name | Price | Discount | User Rating | Number of Reviews | Shipping Options | Stock Availability | Return Policy | Seller Name/Verified | Additional Perks |
 Websites to consider: Amazon India, Flipkart, Myntra, Snapdeal, Tata CLiQ, AJIO, Paytm Mall, JioMart, Meesho, and IndiaMART.
 
+    
     Provide a final takeaway with the most critical strategic direction.
     
     Overall Sentiment Summary: 
-     Format the output in % as a table with the following:
-    Columns:   Positive | Negative | Neutral
+    Add *The Overall Sentiment Summary reflects customer opinions on key product aspects, showing the percentage of positive, negative, and neutral mentions.* line
+     Format the following output in % as a table with the following:
+    Columns:   Positive Mentions | Negative Mentions | Neutral Mentions
     Rows:   Design & Build Quality | Display & Camera | Battery Performance | Software & Performance | Pricing & Value | Availability & Supply
-
+    
 ## Comprehensive Feedback and Expectations Analysis for {user_query}
  
 Instructions for GPT Researcher:  
@@ -114,9 +121,8 @@ Output Format:
   
 End this report with and go to next report:    
 - Actionable recommendations for improving user experience or emphasizing positive feedback in marketing strategies.
-    
-At the end of the report, provide a section with **all individual sources** compiled in a list of clickable links for user reference. Make sure the refrences from both the reports are included.  
-"""
+
+At the end of the report, provide a section with **all i
                 report_type = "research_report"
                 report, context, sources = asyncio.run(get_report(query, report_type))
  
