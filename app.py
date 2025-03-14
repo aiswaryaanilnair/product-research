@@ -30,6 +30,7 @@ def main():
             with st.spinner("Processing your request..."):
                 # Run the async function to get the report
                 query = f"""
+Generate all content under each heading marked in '##'.
 ## Sentiment Analysis and Market Insights Report for {user_query}
 
 Conduct a structured sentiment analysis and market insights report for {user_query}:
