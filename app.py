@@ -357,8 +357,9 @@ At the end of the report, provide a section with **all individual sources** comp
                         result = analyze_data(path)
                         st.session_state.analysis_result = result
                 st.write("## User Reviews:")
-                st.write("### Source:")
-                st.link_button("Visit Website", url)
+                if url:
+                    st.write("### Source:")
+                    st.link_button("Visit Website", url)
                 st.markdown(st.session_state.analysis_result)
                 download_link = get_download_link(st.session_state.path, f"Reviews_{st.session_state.product}.csv")
                 st.markdown(download_link, unsafe_allow_html=True)
