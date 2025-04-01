@@ -59,6 +59,7 @@ def extract_reviews_and_append_csv(json_data, csv_filename):
 
             # Extract product details
             for product in review_item.get("products", []):
+                product_title = product.get("product", {}).get("title", "Unknown")
                 review_text = product.get("review", "")
                 rating = product.get("rating", {}).get("rating", None)
                 created_at = product.get("created_at", "Unknown")
@@ -67,6 +68,7 @@ def extract_reviews_and_append_csv(json_data, csv_filename):
                 reviews_data.append({
                     "CustomerName": display_name,
                     "Location": display_location,
+                    "ProductTitle": product_title,
                     "ReviewText": review_text,
                     "Rating": rating,
                     "ReviewDate": created_at
