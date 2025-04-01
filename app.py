@@ -34,48 +34,66 @@ def extract_reviews_and_append_csv(json_data, csv_filename):
     """
     Extract reviews from JSON data and append to an existing CSV file.
     Creates the file if it doesn't exist.
-    
+
     Args:
         json_data: JSON data containing reviews (string or dict)
         csv_filename: Path to the CSV file
-    
+
     Returns:
         int: Number of reviews extracted and appended
     """
     try:
+        # Parse JSON data
         data = json.loads(json_data) if isinstance(json_data, str) else json_data
-        
-        if "Results" not in data:
-            print("No 'Results' field found in the JSON data")
+
+        if "reviews" not in data:
+            print("No 'reviews' field found in the JSON data")
             return 0
-        
+
         reviews_data = []
-        for item in data["Results"]:
-            review = {
-                "UserNickname": item.get("UserNickname"),
-                "Title": item.get("Title"),
-                "ReviewText": item.get("ReviewText"),
-                "Rating": item.get("Rating")
-            }
-            reviews_data.append(review)
-        
+        for review_item in data["reviews"]:
+            # Extract customer details
+            customer = review_item.get("customer", {})
+            display_name = customer.get("display_name", "Unknown")
+            display_location = customer.get("display_location", "Unknown")
+
+            # Extract product details
+            for product in review_item.get("products", []):
+                product_title = product.get("product", {}).get("title", "Unknown")
+                review_text = product.get("review", "")
+                rating = product.get("rating", {}).get("rating", None)
+                created_at = product.get("created_at", "Unknown")
+
+                # Add extracted data to the list
+                reviews_data.append({
+                    "CustomerName": display_name,
+                    "Location": display_location,
+                    "ProductTitle": product_title,
+                    "ReviewText": review_text,
+                    "Rating": rating,
+                    "ReviewDate": created_at
+                })
+
+        # Convert to DataFrame
         df = pd.DataFrame(reviews_data)
-        
+
         if df.empty:
             print("No reviews found in the data")
             return 0
-            
+
+        # Check if the CSV file exists
         file_exists = os.path.isfile(csv_filename)
-        
+
+        # Append or create CSV file
         df.to_csv(csv_filename, 
                   mode='a' if file_exists else 'w',
                   header=not file_exists,
                   index=False, 
                   encoding='utf-8')
-        
+
         print(f"{'Appended' if file_exists else 'Created new file with'} {len(df)} reviews")
         return len(df)
-            
+
     except json.JSONDecodeError:
         print("Error decoding JSON data")
         return 0
@@ -84,9 +102,8 @@ def extract_reviews_and_append_csv(json_data, csv_filename):
         return 0
 
 def samsung():
-    for i in range(1, 101):
-        url = f"https://api.bazaarvoice.com/data/reviews.json?resource=reviews&action=REVIEWS_N_STATS&filter=productid%3Aeq%3ASM-F741BZYGEUB&filter=contentlocale%3Aeq%3Asq*%2Cbs*%2Cbg*%2Cca*%2Chr*%2Ccs*%2Cda*%2Cnl*%2Cen*%2Cet*%2Cfi*%2Cfr*%2Cde*%2Cel*%2Chu*%2Cit*%2Clv*%2Clt*%2Cmk*%2Cno*%2Cpl*%2Cpt*%2Cro*%2Csr*%2Csk*%2Csl*%2Ces*%2Csv*%2Cuk*%2Cen_IE%2Cen_IE&filter=isratingsonly%3Aeq%3Afalse&filter_reviews=contentlocale%3Aeq%3Asq*%2Cbs*%2Cbg*%2Cca*%2Chr*%2Ccs*%2Cda*%2Cnl*%2Cen*%2Cet*%2Cfi*%2Cfr*%2Cde*%2Cel*%2Chu*%2Cit*%2Clv*%2Clt*%2Cmk*%2Cno*%2Cpl*%2Cpt*%2Cro*%2Csr*%2Csk*%2Csl*%2Ces*%2Csv*%2Cuk*%2Cen_IE%2Cen_IE&include=authors%2Cproducts%2Ccomments&filteredstats=reviews&Stats=Reviews&limit={i}&offset=2&limit_comments=2&sort=isfeatured%3Adesc&passkey=ca0eIctl9puZawFxpTPjOEyC3adiBoUBMIcG4lq6DURb8&apiversion=5.5&displaycode=29539-en_ie"
-
+    for i in range(1, 74):
+        url = f"https://widgets.reevoo.com/api-feefo/api/10/reviews/product?locale=en_GB&product_sku=10266660&origin=www.currys.co.uk&merchant_identifier=currys&since_period=ALL&full_thread=include&unanswered_feedback=include&page={i}&page_size=10&sort=-updated_date&feefo_parameters=include&media=include&demographics=include&translate_attributes=exclude&empty_reviews=false"
         payload = {}
         headers = {}
         response = requests.request("GET", url, headers=headers, data=payload)
@@ -100,7 +117,7 @@ def samsung():
             time.sleep(5)
             
     paths= []
-    for i in range(1, 101):
+    for i in range(1, 74):
         file_path = f"samsung_data/data{i}.json"
         paths.append(file_path)
     
@@ -116,9 +133,9 @@ def samsung():
     return csv_path
 
 def dyson():
-    for i in range(1, 101):
-        url = f"https://api.bazaarvoice.com/data/reviews.json?resource=reviews&action=REVIEWS_N_STATS&filter=productid%3Aeq%3Asv25-absolute&filter=contentlocale%3Aeq%3Aar*%2Czh*%2Chr*%2Ccs*%2Cda*%2Cnl*%2Cen*%2Cet*%2Cfi*%2Cfr*%2Cde*%2Cel*%2Che*%2Chu*%2Cid*%2Cit*%2Cja*%2Cko*%2Clv*%2Clt*%2Cms*%2Cno*%2Cpl*%2Cpt*%2Cro*%2Csk*%2Csl*%2Ces*%2Csv*%2Cth*%2Ctr*%2Cvi*%2Cen_IN%2Cen_IN&filter=isratingsonly%3Aeq%3Afalse&filter_reviews=contentlocale%3Aeq%3Aar*%2Czh*%2Chr*%2Ccs*%2Cda*%2Cnl*%2Cen*%2Cet*%2Cfi*%2Cfr*%2Cde*%2Cel*%2Che*%2Chu*%2Cid*%2Cit*%2Cja*%2Cko*%2Clv*%2Clt*%2Cms*%2Cno*%2Cpl*%2Cpt*%2Cro*%2Csk*%2Csl*%2Ces*%2Csv*%2Cth*%2Ctr*%2Cvi*%2Cen_IN%2Cen_IN&include=authors%2Cproducts%2Ccomments&filteredstats=reviews&Stats=Reviews&limit={i}&offset=8&limit_comments=3&sort=ContentLocale%3Aen_IN%2Cen_AU%2Cen_US%2Cen_GB%2Cen_SG&passkey=caa1NAv81VaHgxw7mDvXGRPl0tPLLgs8B9ZJqrMEy3h6g&apiversion=5.5&displaycode=17317_4_0-en_in"
-
+    for i in range(1, 84):
+        url = f"https://widgets.reevoo.com/api-feefo/api/10/reviews/product?locale=en_GB&product_sku=10271222&origin=www.currys.co.uk&merchant_identifier=currys&since_period=ALL&full_thread=include&unanswered_feedback=include&page={i}&page_size=10&sort=-updated_date&feefo_parameters=include&media=include&demographics=include&translate_attributes=exclude&empty_reviews=false"
+        
         payload = {}
         headers = {}
         response = requests.request("GET", url, headers=headers, data=payload)
@@ -132,7 +149,7 @@ def dyson():
             time.sleep(5)
             
     paths= []
-    for i in range(1, 101):
+    for i in range(1, 84):
         file_path = f"dyson_data/data{i}.json"
         paths.append(file_path)
     
