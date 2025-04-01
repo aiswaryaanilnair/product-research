@@ -113,7 +113,7 @@ def samsung():
         with open(f'samsung_data/data{i}.json', 'w') as json_file:
             json.dump(data_dir, json_file, indent=4)
         
-        if i%20 == 0:
+        if i%30 == 0:
             time.sleep(5)
             
     paths= []
@@ -145,7 +145,7 @@ def dyson():
         with open(f'dyson_data/data{i}.json', 'w') as json_file:
             json.dump(data_dir, json_file, indent=4)
         
-        if i%20 == 0:
+        if i%30 == 0:
             time.sleep(5)
             
     paths= []
@@ -346,10 +346,10 @@ At the end of the report, provide a section with **all individual sources** comp
                     with st.spinner("Fetching all user reviews..."):
                         if user_query == p1:
                             path = samsung()
-                            url = "https://shop.samsung.com/ie/galaxy-z-flip6-yellow-256-gb"
+                            url = "https://www.currys.co.uk/products/samsung-galaxy-z-flip6-512-gb-yellow-10266667.html"
                         elif user_query == p2:
                             path = dyson()
-                            url = "https://www.dyson.in/dyson-v8-absolute-vacuum?utm_id=sa_71700000098898369_58700008722595581&utm_source=google&utm_medium=cpc&utm_campaign=fc_v8_healthy-home&utm_content=do_text_1x1_floor-care&utm_term=dyson+v8+cordless&gad_source=1&gclid=Cj0KCQjws-S-BhD2ARIsALssG0ZZta6U0coZqCHxau8K4g--oJTrZBWgt_jukhIVfSVd0zu9fqM2mpYaAn3BEALw_wcB&gclsrc=aw.ds"
+                            url = "https://www.currys.co.uk/products/dyson-v8-absolute-cordless-vacuum-cleaner-silver-yellow-10256214.html?searchTerm=dyson%20"
                             
                         st.session_state.path = path
                         st.session_state.product = user_query
