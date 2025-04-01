@@ -214,8 +214,12 @@ def main():
     # Input field for user query
     p1 = "Samsung Galaxy Z Flip 6"
     p2 = "Dyson V8 Advanced Cordless Vacuum Cleaner"
-    user_query = st.selectbox("Select an option:", (p1, p2))
+    p3 = "Other Product"
+    user_query = st.selectbox("Select an option:", (p1, p2, p3))
     # Button to trigger the research
+    if user_query == p3:
+        user_query = st.text_input("Enter product name:")
+        
     if st.button("Get Research Report"):
         if user_query:
             with st.spinner("Processing your request..."):
@@ -320,27 +324,27 @@ At the end of the report, provide a section with **all individual sources** comp
  
                 # Display the results
                 st.write(report)
-                
-            if not st.session_state.path or st.session_state.product != user_query:
-                with st.spinner("Fetching all user reviews..."):
-                    if user_query == p1:
-                        path = samsung()
-                        url = "https://shop.samsung.com/ie/galaxy-z-flip6-yellow-256-gb"
-                    elif user_query == p2:
-                        path = dyson()
-                        url = "https://www.dyson.in/dyson-v8-absolute-vacuum?utm_id=sa_71700000098898369_58700008722595581&utm_source=google&utm_medium=cpc&utm_campaign=fc_v8_healthy-home&utm_content=do_text_1x1_floor-care&utm_term=dyson+v8+cordless&gad_source=1&gclid=Cj0KCQjws-S-BhD2ARIsALssG0ZZta6U0coZqCHxau8K4g--oJTrZBWgt_jukhIVfSVd0zu9fqM2mpYaAn3BEALw_wcB&gclsrc=aw.ds"
+            if user_query == p1 or user_query == p2:    
+                if not st.session_state.path or st.session_state.product != user_query:
+                    with st.spinner("Fetching all user reviews..."):
+                        if user_query == p1:
+                            path = samsung()
+                            url = "https://shop.samsung.com/ie/galaxy-z-flip6-yellow-256-gb"
+                        elif user_query == p2:
+                            path = dyson()
+                            url = "https://www.dyson.in/dyson-v8-absolute-vacuum?utm_id=sa_71700000098898369_58700008722595581&utm_source=google&utm_medium=cpc&utm_campaign=fc_v8_healthy-home&utm_content=do_text_1x1_floor-care&utm_term=dyson+v8+cordless&gad_source=1&gclid=Cj0KCQjws-S-BhD2ARIsALssG0ZZta6U0coZqCHxau8K4g--oJTrZBWgt_jukhIVfSVd0zu9fqM2mpYaAn3BEALw_wcB&gclsrc=aw.ds"
+                            
+                        st.session_state.path = path
+                        st.session_state.product = user_query
                         
-                    st.session_state.path = path
-                    st.session_state.product = user_query
-                    
-                    result = analyze_data(path)
-                    st.session_state.analysis_result = result
-            st.write("## User Reviews:")
-            st.write("### Source:")
-            st.link_button("Visit Website", url)
-            st.markdown(st.session_state.analysis_result)
-            download_link = get_download_link(st.session_state.path, f"Reviews_{st.session_state.product}.csv")
-            st.markdown(download_link, unsafe_allow_html=True)
+                        result = analyze_data(path)
+                        st.session_state.analysis_result = result
+                st.write("## User Reviews:")
+                st.write("### Source:")
+                st.link_button("Visit Website", url)
+                st.markdown(st.session_state.analysis_result)
+                download_link = get_download_link(st.session_state.path, f"Reviews_{st.session_state.product}.csv")
+                st.markdown(download_link, unsafe_allow_html=True)
  
         else:
             st.error("Please enter a valid query.")
